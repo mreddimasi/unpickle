@@ -1,1 +1,1 @@
-web: build\install\unpickle\bin\unpickle
+web: build\install\unpickle\bin\unpickle.bat
