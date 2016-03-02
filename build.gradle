@@ -44,5 +44,5 @@ task wrapper(type: Wrapper) {
 }
 // Uncomment before hreoku deployment
  task stage {
-   dependsOn installDist
+   dependsOn build
 }
