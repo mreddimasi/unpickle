@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-// apply plugin: 'io.ratpack.ratpack-groovy'
+apply plugin: 'io.ratpack.ratpack-groovy'
 
 jar {
     baseName = 'unpickle'
@@ -40,6 +40,6 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.6'
 }
 // Uncomment before hreoku deployment
-// task stage {
-  // dependsOn installDist
-//}
+ task stage {
+   dependsOn installDist
+}
