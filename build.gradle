@@ -24,6 +24,8 @@ repositories {
     jcenter()
 }
 
+mainClassName = "Main"
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -34,6 +36,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
     testCompile("junit:junit")
+    compile "com.heroku.sdk:heroku-jdbc:0.1.1"
 }
 
 task wrapper(type: Wrapper) {
