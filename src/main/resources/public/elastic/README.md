@@ -1,4 +1,4 @@
-Elastic SVG Elements
+Elasti SVG Elements
 =========
 
 Adding elasticity with SVG shape animations for enhanced UI interactions.
