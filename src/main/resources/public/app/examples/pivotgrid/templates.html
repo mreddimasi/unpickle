@@ -22,7 +22,7 @@
 <body>
     
         <a class="offline-button" href="../index.html">Back</a>
-        <p><input id="animal"/></p>
+
     
         <div id="example">
             <div id="pivotgrid" class="hidden-on-narrow"></div>
@@ -51,8 +51,32 @@
 
             <script>
                 $(document).ready(function () {
-
-                    $('#animal').kendoAutoComplete({dataSource: ["Ant", "Antilope", "Badger", "Beaver", "Bird"]});
+                    $("#pivotgrid").kendoPivotGrid({
+                        dataCellTemplate: $("#dataCellTemplate").html(),
+                        columnHeaderTemplate: $("#headerTemplate").html(),
+                        rowHeaderTemplate: $("#headerTemplate").html(),
+                        columnWidth: 200,
+                        height: 320,
+                        dataSource: {
+                            type: "xmla",
+                            columns: [{ name: "[Date].[Calendar]", expand: true }],
+                            rows: [{ name: "[Product].[Product Line]", expand: true }],
+                            measures: ["[Measures].[Reseller Freight Cost]"],
+                            transport: {
+                                connection: {
+                                    catalog: "Adventure Works DW 2008R2",
+                                    cube: "Adventure Works"
+                                },
+                                read: "//demos.telerik.com/olap/msmdpump.dll"
+                            },
+                            schema: {
+                                type: "xmla"
+                            },
+                            error: function (e) {
+                                alert("error: " + kendo.stringify(e.errors[0]));
+                            }
+                        }
+                    });
                 });
             </script>
         </div>
