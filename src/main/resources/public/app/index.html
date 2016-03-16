@@ -24,6 +24,7 @@
     <script src="js/kendo.all.min.js"></script>
 
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,6 +33,7 @@
     <![endif]-->
 </head>
 <body>
+    <script src="js/Sample.js"></script>
     <!-//Sidebar-->
     <div class="navbar navbar-inverse navbar-default navbar-fixed-top sidebar" >
         <ul class="nav navbar-nav">
@@ -55,6 +57,7 @@
     <!-//Sidebar-->
     <!-//Main-->
     <div class="main">
+
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-primary">
@@ -145,10 +148,74 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div id="pivotgrid"></div>
+                <div class="hidden-on-narrow" id="configurator" ></div>
+            </div>
+
+        </div>
     </div>
-    <!-//Main-->
 
+    <!-//Main End-->
 
+    <script>
+        $(document).ready(function () {
+            var pivotgrid = $("#pivotgrid").kendoPivotGrid({
+                filterable: true,
+                columnWidth: 120,
+                height: 570,
+                dataSource: {
+                    data: products,
+                    schema: {
+                        model: {
+                            fields: {
+                                ID: { type: "number" },
+                                Center: { type: "string" },
+                                MostOftenUsedCar: { type: "String" },
+                                FrequencyOfUsage: { type: "string" },
+                                TypeOfUsage: { type: "string" },
+                                KMsDriven: { type: "number" },
+                                YearOfPurchase: { type: "number" },
+                                MonthlyHouseholdIncome: { type: "string" },
+                                AwareOfAudi: { type: "boolean"},
+                                AwareOfBMW: { type: "boolean"},
+                                AwareOfMerc: { type: "boolean"},
+                                AwareOfFord: { type: "boolean"},
+                                AwareOfDontKnow: { type: "boolean"},
+                                CurrentlyOwnedCarsAudi: { type: "boolean"},
+                                CurrentlyOwnedCarsBMW: { type: "boolean"},
+                                CurrentlyOwnedCarsMerc: { type: "boolean"},
+                                CurrentlyOwnedCarsFord: { type: "boolean"}
+                            }
+                        },
+                        cube: {
+                            dimensions: {
+                                Center: { caption: "All Cities" },
+                                MostOftenUsedCar: { caption: "Most Often Used Car" },
+                                CurrentlyOwnedCarsAudi: { caption: "Owns Audi?" },
+                                TypeOfUsage: {caption: "Type of Usage"}
+                            },
+                            measures: {
+                                "Sum": { field: "KMsDriven", format: "{0}", aggregate: "sum" },
+                                "Average": { field: "KMsDriven", format: "{0}", aggregate: "average" }
+                            }
+                        }
+                    },
+                    columns: [{ name: "Center", expand: true }, { name: "MostOftenUsedCar" } ],
+                    rows: [{name: "TypeOfUsage", expanded: true}, {name: "CurrentlyOwnedCarsAudi"} ],
+                    measures: ["Sum"]
+                }
+            }).data("kendoPivotGrid");
+
+            $("#configurator").kendoPivotConfigurator({
+                dataSource: pivotgrid.dataSource,
+                filterable: true,
+                height: 570
+            });
+        });
+    </script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
