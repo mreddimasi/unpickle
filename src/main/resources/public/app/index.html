@@ -199,13 +199,14 @@
                             },
                             measures: {
                                 "Sum": { field: "KMsDriven", format: "{0}", aggregate: "sum" },
-                                "Average": { field: "KMsDriven", format: "{0}", aggregate: "average" }
+                                "Average": { field: "KMsDriven", format: "{0}", aggregate: "average" },
+                                "Count": { field: "KMsDriven", format: "{0}", aggregate: "count" }
                             }
                         }
                     },
                     columns: [{ name: "Center", expand: true }, { name: "MostOftenUsedCar" } ],
                     rows: [{name: "TypeOfUsage", expanded: true}, {name: "CurrentlyOwnedCarsAudi"} ],
-                    measures: ["Sum"]
+                    measures: ["Count"]
                 }
             }).data("kendoPivotGrid");
 
