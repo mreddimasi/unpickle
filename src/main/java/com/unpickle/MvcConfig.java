@@ -12,6 +12,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/pivot").setViewName("pivot");
         registry.addViewController("/").setViewName("pivot");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/logout").setViewName("login");
     }
  
  @Bean
